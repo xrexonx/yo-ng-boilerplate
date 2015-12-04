@@ -11,6 +11,7 @@ var runSequence = require('run-sequence');
 
 var uglify = require('gulp-uglify');
 var ngmin = require('gulp-ngmin');
+var concat = require('gulp-concat');
 
 var yeoman = {
   app: require('./bower.json').appPath || 'app',
