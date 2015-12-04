@@ -3,6 +3,7 @@
 Refactored using gulp instead of grunt, ui-router instead of ngRoutes, material-design-lite instead of bootstrap.
 
 
+## Dependencies
 I assumes that you already have this dependencies on your machines.
 
   * [Node]
