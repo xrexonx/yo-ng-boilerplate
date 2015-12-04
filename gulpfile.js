@@ -1,4 +1,4 @@
-// Generated on 2015-12-04 using generator-angular 0.14.0
+// Generated on 2015-12-04 using generator-angular 0.14.0 ~xrexonx
 'use strict';
 
 var gulp = require('gulp');
@@ -9,12 +9,23 @@ var rimraf = require('rimraf');
 var wiredep = require('wiredep').stream;
 var runSequence = require('run-sequence');
 
+var uglify = require('gulp-uglify');
+var ngmin = require('gulp-ngmin');
+
 var yeoman = {
   app: require('./bower.json').appPath || 'app',
-  dist: 'dist'
+  dist: 'dist',
+  build:'app/build/js'
 };
 
 var paths = {
+  js:{
+    vendors:[yeoman.app + '/scripts/vendors/*.js'],
+    controllers:[yeoman.app + '/scripts/controllers/*.js'],
+    services:[yeoman.app + '/scripts/services/*.js'],
+    filters:[yeoman.app + '/scripts/filters/*.js'],
+    directives:[yeoman.app + '/scripts/directives/*.js']
+  },
   scripts: [yeoman.app + '/scripts/**/*.js'],
   styles: [yeoman.app + '/styles/**/*.scss'],
   test: ['test/spec/**/*.js'],
@@ -54,6 +65,19 @@ var styles = lazypipe()
 gulp.task('styles', function () {
   return gulp.src(paths.styles)
     .pipe(styles());
+});
+
+gulp.task('scripts', function () {
+  for (var key in paths.js) {
+    if (paths.js.hasOwnProperty(key)) {
+      gulp
+          .src(paths.js[key])
+          .pipe(concat(key + '.min.js'))
+          .pipe(ngmin({dynamic: true}))
+          .pipe(uglify())
+          .pipe(gulp.dest(dest.js));
+    }
+  }
 });
 
 gulp.task('lint:scripts', function () {

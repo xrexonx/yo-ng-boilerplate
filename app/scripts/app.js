@@ -2,7 +2,7 @@
   'use strict';
 
   /*Main Modules*/
-  angular.module('rexon', ['AppRoutes', 'AppControllers', 'AppServices', 'AppDirectives', 'AppFilters'])
+  angular.module('rexon', ['AppRoutes', 'AppControllers', 'AppServices', 'AppDirectives', 'AppFilters']);
 
   /*Defining Sub Modules*/
   angular.module('AppRoutes', ['ui.router']);
