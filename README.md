@@ -8,6 +8,13 @@ Refactored using gulp instead of grunt, ui-router instead of ngRoutes, material-
 $ git clone https://github.com/xrexonx/yo-ng-boilerplate.git
 ```
 
+## Update dependencies
+
+```sh
+$ npm install
+$ bower update
+```
+
 ## Build & development
 
 Run `gulp` for building and `gulp serve` for preview.
