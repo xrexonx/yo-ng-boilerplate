@@ -13,12 +13,14 @@
                 .state('/', {
                     url: '/',
                     templateUrl: 'views/main.html',
-                    controller: 'MainCtrl',
+                    controller: 'mainController',
                     controllerAs: 'main'
                 })
-                .state('view', {
+                .state('app', {
                     url: '/:view',
-                    templateUrl: _getView('project'),
+                    templateUrl: function($stateParams) {
+                        return _getView($stateParams.view);
+                    },
                     controllerProvider: function($stateParams) {
                         return $stateParams.view + 'Controller';
                     }
