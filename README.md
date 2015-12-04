@@ -1,6 +1,6 @@
 # yo-ng-boilerplate
 
-A boilerplate like no other, Refactored using gulp instead of grunt, ui-router instead of ngRoutes, material-design-lite instead of bootstrap.
+Refactored using gulp instead of grunt, ui-router instead of ngRoutes, material-design-lite instead of bootstrap.
 
 ## Installations
 
