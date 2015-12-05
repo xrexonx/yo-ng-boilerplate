@@ -5,8 +5,8 @@
         .module('AppControllers')
         .controller('detailsController', function ($scope, $stateParams) {
 
-            console.log($stateParams);
-            console.log($scope);
+            var vm = $scope;
+            vm.view = $stateParams.view;
 
         });
 
