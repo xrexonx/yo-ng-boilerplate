@@ -15,17 +15,16 @@ var concat = require('gulp-concat');
 
 var yeoman = {
   app: require('./bower.json').appPath || 'app',
-  dist: 'dist',
-  build:'app/build/js'
+  dist: 'dist'
 };
 
 var paths = {
   js:{
-    vendors:[yeoman.app + '/scripts/vendors/*.js'],
+    //vendors:[yeoman.app + '/scripts/vendors/*.js'],
     controllers:[yeoman.app + '/scripts/controllers/*.js'],
     services:[yeoman.app + '/scripts/services/*.js'],
-    filters:[yeoman.app + '/scripts/filters/*.js'],
-    directives:[yeoman.app + '/scripts/directives/*.js']
+    filters:[yeoman.app + '/scripts/filters/*.js']
+    //directives:[yeoman.app + '/scripts/directives/*.js']
   },
   scripts: [yeoman.app + '/scripts/**/*.js'],
   styles: [yeoman.app + '/styles/**/*.scss'],
@@ -40,6 +39,17 @@ var paths = {
   views: {
     main: yeoman.app + '/index.html',
     files: [yeoman.app + '/views/**/*.html']
+  }
+};
+
+/* Vendors and assets managements*/
+var buildFiles = yeoman.app + '/build';
+var rexon = {
+  bowerDir: './bower_components',
+  buildDir: {
+    vendors: buildFiles +'/vendors',
+    js: buildFiles +'/js',
+    css:buildFiles +'/css'
   }
 };
 
@@ -59,13 +69,23 @@ var styles = lazypipe()
   .pipe($.autoprefixer, 'last 1 version')
   .pipe(gulp.dest, '.tmp/styles');
 
+/* Yeah, it is... ~ @line 56*/
+var _move = function (filesToCopy, destination) {
+  return gulp
+      .src(filesToCopy)
+      .pipe(gulp.dest(destination));
+}
+
 ///////////
 // Tasks //
 ///////////
 
-gulp.task('styles', function () {
-  return gulp.src(paths.styles)
-    .pipe(styles());
+gulp.task('move', function () {
+  _move([
+    rexon.bowerDir + '/angular/angular.min.js',
+    rexon.bowerDir + '/angular-ui-router/release/angular-ui-router.min.js',
+    rexon.bowerDir + '/material-design-lite/material.min.js'
+  ], rexon.buildDir.vendors);
 });
 
 gulp.task('scripts', function () {
@@ -76,9 +96,16 @@ gulp.task('scripts', function () {
           .pipe(concat(key + '.min.js'))
           .pipe(ngmin({dynamic: true}))
           .pipe(uglify())
-          .pipe(gulp.dest(dest.js));
+          .pipe(gulp.dest(rexon.buildDir.js));
     }
   }
+});
+
+/*============================================================================*/
+
+gulp.task('styles', function () {
+  return gulp.src(paths.styles)
+    .pipe(styles());
 });
 
 gulp.task('lint:scripts', function () {
