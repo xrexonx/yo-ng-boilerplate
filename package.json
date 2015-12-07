@@ -34,6 +34,6 @@
     "node": ">=0.10.0"
   },
   "dependencies": {
-    "del": "^2.1.0"
+    "gulp-util": "^3.0.7"
   }
 }

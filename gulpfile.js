@@ -49,7 +49,6 @@ var rexon = {
   bowerDir: './bower_components',
   buildDir: {
     vendors: buildFiles +'/vendors',
-    test: buildFiles +'/test',
     js: buildFiles +'/js',
     css:buildFiles +'/css'
   }
@@ -73,11 +72,6 @@ var styles = lazypipe()
 
 /* Yeah, it is... ~ @line 56*/
 var _move = function (filesToCopy, destination) {
-
-  del([destination]).then(function(paths) {
-    console.log(paths);
-    console.log('Successfully Deleted');
-  });
 
   return gulp
       .src(filesToCopy)
