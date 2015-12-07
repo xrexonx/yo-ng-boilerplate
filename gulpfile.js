@@ -12,7 +12,7 @@ var runSequence = require('run-sequence');
 var uglify = require('gulp-uglify');
 var ngmin = require('gulp-ngmin');
 var concat = require('gulp-concat');
-var del = require('del');
+var gutil = require('gulp-util');
 
 var yeoman = {
   app: require('./bower.json').appPath || 'app',
@@ -70,8 +70,13 @@ var styles = lazypipe()
   .pipe($.autoprefixer, 'last 1 version')
   .pipe(gulp.dest, '.tmp/styles');
 
-/* Yeah, it is... ~ @line 56*/
 var _move = function (filesToCopy, destination) {
+
+  filesToCopy = typeof filesToCopy === 'string' ? [filesToCopy] : filesToCopy;
+
+  if (!Array.isArray(filesToCopy) && typeof filesToCopy !== 'function') {
+    throw new gutil.PluginError('gulp-copy', '`filesToCopy` should be a string, array, or function');
+  }
 
   return gulp
       .src(filesToCopy)
