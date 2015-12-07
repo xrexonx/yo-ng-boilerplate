@@ -13,6 +13,7 @@ var uglify = require('gulp-uglify');
 var ngmin = require('gulp-ngmin');
 var concat = require('gulp-concat');
 var gutil = require('gulp-util');
+var copy = require('gulp-copy-rex');
 
 var yeoman = {
   app: require('./bower.json').appPath || 'app',
@@ -70,25 +71,12 @@ var styles = lazypipe()
   .pipe($.autoprefixer, 'last 1 version')
   .pipe(gulp.dest, '.tmp/styles');
 
-var _move = function (filesToCopy, destination) {
-
-  filesToCopy = typeof filesToCopy === 'string' ? [filesToCopy] : filesToCopy;
-
-  if (!Array.isArray(filesToCopy) && typeof filesToCopy !== 'function') {
-    throw new gutil.PluginError('gulp-copy', '`filesToCopy` should be a string, array, or function');
-  }
-
-  return gulp
-      .src(filesToCopy)
-      .pipe(gulp.dest(destination));
-};
-
 ///////////
 // Tasks //
 ///////////
 
-gulp.task('move', function () {
-  _move([
+gulp.task('copy', function () {
+  copy([
     rexon.bowerDir + '/angular/angular.min.js',
     rexon.bowerDir + '/angular-ui-router/release/angular-ui-router.min.js',
     rexon.bowerDir + '/material-design-lite/material.min.js'
