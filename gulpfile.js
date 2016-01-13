@@ -37,7 +37,7 @@ var paths = {
     'test/mock/**/*.js',
     'test/spec/**/*.js'
   ],
-  karma: 'karma.conf.js',
+  karma: 'test/karma.conf.js',
   views: {
     main: yeoman.app + '/index.html',
     files: [yeoman.app + '/views/**/*.html']
