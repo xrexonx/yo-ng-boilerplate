@@ -6,6 +6,7 @@ Refactored using gulp instead of grunt, ui-router instead of ngRoutes, material-
 ## Dependencies
 I assumes that you already have this dependencies on your machines.
 
+  * [Git]
   * [Node]
   * [Bower]
   * [Gulp]
@@ -31,6 +32,7 @@ This project is generated with [yo angular generator](https://github.com/yeoman/
 version 0.14.0.
 
 
-   [Node]: <http://nodejs.org>
-   [Bower]: <http://bower.io>
-   [Gulp]: <http://gulpjs.com>
+[Git]: <https://git-scm.com/>
+[Node]: <http://nodejs.org>
+[Bower]: <http://bower.io>
+[Gulp]: <http://gulpjs.com>
