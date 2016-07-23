@@ -14,13 +14,13 @@ I assumes that you already have this dependencies on your machines.
 ## Installations
 
 ```sh
-$ git clone https://github.com/xrexonx/yo-ng-boilerplate.git && cd yo-ng-boilerplate && npm install
+$ git clone https://github.com/xrexonx/yo-ng-boilerplate.git && cd yo-ng-boilerplate
 ```
 
 ## Update dependencies
 
 ```sh
-$ bower update
+$ npm install && bower update
 ```
 
 ## Build & development
